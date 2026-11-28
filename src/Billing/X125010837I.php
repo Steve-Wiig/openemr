@@ -796,7 +796,9 @@ class X125010837I
             );
             $out .= $otherId;
             if ($otherId === '**') {
-                $log .= Claim::npiNotSentLog('Other Operating Physician', $ub04id[406] ?? '');
+                $log .= self::physicianNpi($ub04id[406] ?? null) === ''
+                    ? Claim::npiNotSentLog('Other Operating Physician', $ub04id[406] ?? '')
+                    : "*** Other Operating Physician has no NPI qualifier.\n";
             }
             $out .= "~\n";
 
@@ -817,7 +819,9 @@ class X125010837I
             );
             $out .= $secondOtherId;
             if ($secondOtherId === '**') {
-                $log .= Claim::npiNotSentLog('Other Operating Physician', $ub04id[420] ?? '');
+                $log .= self::physicianNpi($ub04id[420] ?? null) === ''
+                    ? Claim::npiNotSentLog('Other Operating Physician', $ub04id[420] ?? '')
+                    : "*** Other Operating Physician has no NPI qualifier.\n";
             }
             $out .= "~\n";
 
