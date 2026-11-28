@@ -277,9 +277,9 @@ class Claim
      * Log line for an NPI that was not sent. A stored value that is not an
      * NPI is named so it can be corrected; an empty field reads as missing.
      */
-    public static function npiNotSentLog(string $label, string|null $rawNpi): string
+    public static function npiNotSentLog(string $label, mixed $rawNpi): string
     {
-        $rawNpi = trim((string) ($rawNpi ?? ''));
+        $rawNpi = is_scalar($rawNpi) ? trim((string) $rawNpi) : '';
         if ($rawNpi === '' || $rawNpi === '0') {
             return "*** $label has no NPI.\n";
         }
