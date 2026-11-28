@@ -1083,9 +1083,9 @@ class X125010837P
                     $out .=
                         "*" . "24" . "*" . $claim->facilityETIN();
                 }
-                if (!$claim->facilityNPI()) {
-                    $log .= Claim::npiNotSentLog('Service location', $claim->facility['facility_npi'] ?? '');
-                }
+            }
+            if (!$claim->facilityNPI()) {
+                $log .= Claim::npiNotSentLog('Service location', $claim->facility['facility_npi'] ?? '');
             }
 
             $out .= "~\n";
