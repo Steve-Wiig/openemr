@@ -1573,6 +1573,11 @@ class X125010837P
             // Used if the rendering provider for this service line is different
             // from that in loop 2310B.
 
+            if ($claim->providerNPI() == $claim->providerNPI($prockey)
+                && !$claim->providerNPI($prockey)
+                && $claim->providerRawNPI($prockey) !== '') {
+                $log .= Claim::npiNotSentLog('Rendering provider', $claim->providerRawNPI($prockey));
+            }
             if ($claim->providerNPI() != $claim->providerNPI($prockey)) {
                 ++$edicount;
                 $out .= "NM1" .       // Loop 2420A Rendering Provider
